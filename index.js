@@ -83,7 +83,12 @@ hint: the strings returned need to exactly match the string in step 4.
  */
 
 function getWinnersByYear(array, cBT3, cBT4) {
-        // return `In ${}, ${} won the world cup!`
+    const years = cBT3(array, getFinals);
+    const winners = cBT4(array, getFinals);
+    const everyWinner = winners.map(function(year, index) {
+        return `In ${years[index]}, ${year} won the world cup!`
+    });
+    return everyWinner;
 }
 
 console.log(getWinnersByYear(fifaData, getYears, getWinners));
@@ -99,13 +104,13 @@ Use the higher order function getAverageGoals to do the following:
 */
 
 function getAverageGoals(cBT2) {
-   const average = cBT2.reduce(function(total, current) {
-       return current['Home Team Goals'] + current['Away Team Goals'] + total
+   const average = cBT2.reduce(function(acc, i) {
+       return acc + i['Home Team Goals'] + i['Away Team Goals']
    }, 0) / (cBT2.length);
    return average.toFixed(2);
 }
 
-
+console.log(getAverageGoals(getFinals(fifaData)));
 
 
 /// 🥅 STRETCH 🥅 ///
